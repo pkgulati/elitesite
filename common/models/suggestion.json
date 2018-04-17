@@ -1,0 +1,45 @@
+{
+    "name": "Suggestion",
+    "base": "PersistedModel",
+    "idInjection": false,
+    "description": "",
+    "properties": {
+        "text" : {
+            "type" : "String",
+	        "required" : true
+        },
+        "name" : {
+            "type" : "String",
+	        "required" : true
+        },
+        "emailOrPhone" : {
+            "type" : "String"
+        },
+        "time" : {
+            "type" : "Date"
+        }
+    },
+    "acls" : [
+        {
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission": "DENY",
+            "property": "*",
+            "accessType": "*"
+        },
+        {
+            "principalType": "USER",
+            "principalId": "b5f4bb82-2f00-4beb-a083-8eaff84c76ed",
+            "permission": "ALLOW",
+            "property": "*",
+            "accessType": "*"
+        },
+        {
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission": "ALLOW",
+            "property": "create",
+            "accessType": "WRITE"
+        }
+    ]
+}

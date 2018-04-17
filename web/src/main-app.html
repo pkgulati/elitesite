@@ -1,0 +1,159 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-layout/demo/sample-content.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+
+
+
+<link rel="import" href="./suggestions-form.html">
+
+<dom-module id="main-app">
+
+    <template>
+
+        <style is="custom-style" include="app-theme"></style>
+        <style include="shared-styles iron-flex iron-flex-alignment">
+            a {
+                text-decoration: none;
+                font-size: inherit;
+                color: inherit;
+            }
+
+            header {
+                @apply --layout-vertical;
+                @apply --layout-center-center;
+                height: 100vh;
+                width: 100%;
+                background-image: url('/images/Mantri-Elite-Photo3.jpeg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                text-align: center;
+            }
+
+            header>h2 {
+                font-size: 56px;
+                font-weight: 300;
+                margin: 0;
+            }
+
+            header>p {
+                font-size: 32px;
+            }
+
+            section {
+                padding: 88px 16px;
+            }
+
+            suggestions-form {
+                background-color: white;
+                color: black;
+                border: 1px solid #f48f42;
+                width: 70vw;
+                height: 600px;
+                margin-top: 40vh;
+            }
+
+            @media (max-width: 600px) {
+                suggestions-form {
+                    width: 90vw;
+                    margin-top : 40vh;
+                    height: 400px;
+                }
+                header {
+                    background-image: url('/images/Mantri-Elite-Photo2.jpeg');
+                }
+            }
+        </style>
+
+        <app-location route="{{_route}}" use-hash-as-path></app-location>
+        <app-route route="{{_route}}" pattern="/:page" data="{{_pageData}}" tail="{{_subRoute}}"></app-route>
+        <app-route route="{{_subRoute}}" pattern="/:id" data="{{_idData}}"></app-route>
+
+        <header>
+            <suggestions-form></suggestions-form>
+        </header>
+
+
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class MainApp extends Polymer.Element {
+            static get is() { return 'main-app'; }
+            static get properties() {
+                return {
+                    prop1: {
+                        type: String,
+                        value: 'main-app'
+                    },
+                    _route: Object,
+
+                    _subRoute: Object,
+
+                    _pageData: {
+                        type: Object,
+                        observer: '_pageDataChanged'
+                    },
+                    _selectedPage: String,
+                    _idData: Object,
+
+                    _scrollPositionMap: {
+                        type: Object,
+                        value: function () {
+                            return {};
+                        }
+                    }
+                };
+            }
+
+            ready() {
+                console.log('main app ready');
+                super.ready();
+            }
+
+
+            _pageDataChanged(pageData, oldPageData) {
+                var map = this._scrollPositionMap;
+                if (oldPageData != null && oldPageData.page != null) {
+                    map[oldPageData.page] = window.pageYOffset;
+                }
+                this._selectedPage = pageData.page;
+                if (map[pageData.page] != null) {
+                    Polymer.AppLayout.scroll({ top: map[pageData.page], behavior: 'silent' });
+                } else if (this.isAttached) {
+                    Polymer.AppLayout.scroll({ top: 0, behavior: 'silent' });
+                }
+            }
+
+        }
+
+        window.customElements.define(MainApp.is, MainApp);
+    </script>
+
+</dom-module>

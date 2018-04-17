@@ -1,0 +1,7 @@
+{
+  "name": "mantrielite",
+  "short_name": "mantrielite",
+  "description": "Mantri Elite Web Site",
+  "start_url": "/",
+  "display": "standalone"
+}
