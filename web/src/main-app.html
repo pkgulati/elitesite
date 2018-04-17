@@ -95,7 +95,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <header>
             <suggestions-form></suggestions-form>
         </header>
-
+        <iron-ajax id="xhr" url="[[rootPath]]api/activities" on-response="handleResponse" content-type="application/json"  method="POST" 
+                 reject-with-request debounce-duration="300">
+         </iron-ajax>
 
     </template>
 
@@ -133,10 +135,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             ready() {
-                console.log('main app ready');
                 super.ready();
+                var data = {
+                    time : Date.now()
+                }
+                this.$.xhr.body = JSON.stringify(data);
+                let request = this.$.xhr.generateRequest();
+                request.completes.then(function (req) {
+                        // succesful request, argument is iron-request element
+                }, function (rejected) {
+                        // failed request, argument is an object
+                        let req = rejected.request;
+                        let error = rejected.error;
+                }
+                )
             }
-
+           
+            handleResponse(e) {
+                console.log('ok');
+            }
 
             _pageDataChanged(pageData, oldPageData) {
                 var map = this._scrollPositionMap;

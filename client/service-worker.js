@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f7eb9862b1725aef7e59f8584c2a2efb"],["images/Mantri-Elite-Photo1.gif","b4dbbb2eaab986f0d3f49df2c463417d"],["images/Mantri-Elite-Photo2.jpeg","1079b84ad7218499445e2698bd4b731c"],["images/Mantri-Elite-Photo3.jpeg","3db7c09b6a9c1e432aaaeaee35151401"],["index.html","279a4ea37e5000aedb071d360c72ac7e"],["manifest.json","2da3286c5c023bc6277b1584c8ff0d27"],["src/main-app.html","d72ed2027d01847d39e216813cfec4f5"],["src/suggestions-page.html","83aef09a3e4b1f2a9d6d50a4e3a254b3"]];
+var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f7eb9862b1725aef7e59f8584c2a2efb"],["images/Mantri-Elite-Photo1.gif","b4dbbb2eaab986f0d3f49df2c463417d"],["images/Mantri-Elite-Photo2.jpeg","1079b84ad7218499445e2698bd4b731c"],["images/Mantri-Elite-Photo3.jpeg","3db7c09b6a9c1e432aaaeaee35151401"],["index.html","279a4ea37e5000aedb071d360c72ac7e"],["manifest.json","2da3286c5c023bc6277b1584c8ff0d27"],["src/main-app.html","b0096b0985cbaf84ef8a510c826a8554"],["src/suggestions-page.html","83aef09a3e4b1f2a9d6d50a4e3a254b3"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 

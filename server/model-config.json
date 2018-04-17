@@ -269,5 +269,9 @@
     "Suggestion" : {
         "public": true,
         "dataSource": "db"
+    },
+    "Activity" : {
+        "public": true,
+        "dataSource": "db"
     }
 }
